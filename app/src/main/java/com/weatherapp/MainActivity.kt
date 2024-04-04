@@ -29,7 +29,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             WeatherAppTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background) {
                     HomePage()
                 }
             }
@@ -40,6 +42,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HomePage() {
     val activity = LocalContext.current as? ComponentActivity
+
     Column (
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
         verticalArrangement = Arrangement.Center,

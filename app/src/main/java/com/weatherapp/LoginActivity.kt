@@ -6,14 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -41,9 +34,8 @@ class LoginActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Text("Hello, Android!")
+                    color = MaterialTheme.colorScheme.background) {
+                   LoginPage()
                 }
             }
         }
@@ -57,6 +49,7 @@ fun LoginPage(modifier: Modifier = Modifier) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val activity = LocalContext.current as? Activity
+
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -65,7 +58,7 @@ fun LoginPage(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Bem-vindo/a!",
+            text = "Bem-vindo!",
             fontSize = 24.sp
         )
         OutlinedTextField(
@@ -111,6 +104,18 @@ fun LoginPage(modifier: Modifier = Modifier) {
             }
         ) {
             Text("Home Page")
+        }
+        Spacer(modifier = Modifier.size(24.dp))
+        Button(
+            onClick = {
+                activity?.startActivity(
+                    Intent(activity, RegisterActivity::class.java).setFlags(
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    )
+                )
+            }
+        ) {
+            Text("Registrar")
         }
     }
 }
