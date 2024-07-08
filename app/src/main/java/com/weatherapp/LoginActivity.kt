@@ -80,6 +80,11 @@ fun LoginPage(modifier: Modifier = Modifier) {
             Button(
                 onClick = {
                     Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
+                    activity?.startActivity(
+                        Intent(activity, MainActivity::class.java).setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        )
+                    )
                 },
                 enabled = email.isNotEmpty() && password.isNotEmpty()
             ) {
@@ -91,19 +96,6 @@ fun LoginPage(modifier: Modifier = Modifier) {
             ) {
                 Text("Limpar")
             }
-        }
-        Spacer(modifier = Modifier.size(24.dp))
-        Button(
-            onClick = {
-                activity?.startActivity(
-                    Intent(activity, MainActivity::class.java).setFlags(
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP
-                    )
-                )
-                activity?.finish()
-            }
-        ) {
-            Text("Home Page")
         }
         Spacer(modifier = Modifier.size(24.dp))
         Button(
