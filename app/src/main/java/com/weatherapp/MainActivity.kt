@@ -31,6 +31,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun HomePagePreview() {
     WeatherAppTheme {
-        HomePage()
+        Surface {
+            HomePage()
+        }
     }
 }
